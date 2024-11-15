@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #57AB27;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .search-bar {
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 8px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 8px 16px;
+            background-color: #FDD835;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .category {
+            padding: 20px;
+            text-align: center;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: white;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .product-name {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .product-price {
+            color: #57AB27;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header>
+        <h1>Tienda en Línea</h1>
+    </header>
+
+    <!-- Barra de Búsqueda -->
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar productos...">
+        <button>Buscar</button>
+    </div>
+
+    <!-- Navegación de Categorías -->
+    <nav>
+        <a href="#">Ofertas</a>
+        <a href="#">Electrónica</a>
+        <a href="#">Hogar</a>
+        <a href="#">Despensa</a>
+        <a href="#">Juguetes</a>
+        <a href="#">Moda</a>
+    </nav>
+
+    <!-- Categorías Destacadas -->
+    <div class="category">
+        <h2>Categorías Populares</h2>
+    </div>
+
+    <!-- Productos Destacados -->
+    <div class="products">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 1">
+            <div class="product-name">Producto 1</div>
+            <div class="product-price">$100.00</div>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 2">
+            <div class="product-name">Producto 2</div>
+            <div class="product-price">$200.00</div>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 3">
+            <div class="product-name">Producto 3</div>
+            <div class="product-price">$300.00</div>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Producto 4">
+            <div class="product-name">Producto 4</div>
+            <div class="product-price">$400.00</div>
+        </div>
+    </div>
+
+    <!-- Pie de Página -->
+    <footer>
+        <p>&copy; 2023 Tienda en Línea. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
