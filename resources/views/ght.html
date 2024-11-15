@@ -14,8 +14,27 @@
         header {
             background-color: #c401ff;
             color: white;
-            padding: 10px 0;
-            text-align: center;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .header-buttons div {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .header-buttons div img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
         }
         .search-bar {
             margin: 10px;
@@ -90,6 +109,17 @@
     <!-- Encabezado -->
     <header>
         <h1>Wazaaaaaaaaaaaaaaa</h1>
+        <div class="header-buttons">
+            <div>
+                <img src="https://via.placeholder.com/20" alt="Icono de usuario">
+                <span>Iniciar sesión<br>Cuenta</span>
+            </div>
+            <div>
+                <img src="https://via.placeholder.com/20" alt="Icono de carrito">
+                <span>0</span> <!-- Indicador de cantidad de productos -->
+                <span>$0.00</span>
+            </div>
+        </div>
     </header>
 
     <!-- Barra de Búsqueda -->
