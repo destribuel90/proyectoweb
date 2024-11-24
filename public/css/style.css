@@ -93,8 +93,8 @@
             background-color: white;
         }
         .product-card img {
-            max-width: 100%;
-            height: auto;
+            width: 180px;
+            height: 180px;
             border-radius: 5px;
         }
         .product-name {

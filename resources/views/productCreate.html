@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Producto</title>
+</head>
+<body>
+    <form >
+        <!-- Nombre del producto -->
+        <label for="name">Nombre del producto:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <!-- Descripción del producto -->
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br><br>
+
+        <!-- Precio del producto -->
+        <label for="price">Precio:</label>
+        <input type="number" id="price" name="price"  required>
+        <br><br>
+
+        <!-- Stock del producto -->
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock"  required>
+        <br><br>
+
+        <label for="user_id">User id:</label>
+        <input type="number" name="user_id">  <!-- Usuario ID está predefinido como 1 en este caso -->
+        <br>
+        <!-- URL de la imagen -->
+        <label for="image">Imagen:</label>
+        <input type="file" id="image" name="image"  required>
+        <br><br>
+
+        <!-- Botón de envío -->
+        <button type="submit">Guardar Producto</button>
+    </form>
+    <img src="http://localhost/storage/img/products/imagen.jpg" alt="">
+    <script src="js/create.js"></script>
+</body>
+</html>
