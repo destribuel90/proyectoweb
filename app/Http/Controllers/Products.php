@@ -23,7 +23,7 @@ class Products extends Controller
     }
     public function store(Request $request){
         $nameFile = null;
-        $validator = Validator::make($request()->all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'required|max:700',
             'price' => 'required|numeric',
@@ -39,7 +39,7 @@ class Products extends Controller
             return response()->json($data, 400);
         }
             if($request->hasFile('image') && $request->file('image')->isValid()){
-                $fecha = date('Y-m-d').date('H');
+                $fecha = date('Y-m-d').date('His');
                 $archivo = $request->file('image');
                 $nameFile = $request->name . $request->user_id . "_" . $fecha . "." . $archivo->extension();
                 $archivo->storeAs('img/products', $nameFile , 'public');

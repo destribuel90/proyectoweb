@@ -6,39 +6,41 @@
     <title>Mis Producto</title>
 </head>
 <body>
-    <form >
+    <form>
+        <!-- Token CSRF (si usas Laravel) -->
+    
         <!-- Nombre del producto -->
         <label for="name">Nombre del producto:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" placeholder="Ejemplo: Camiseta" required>
         <br><br>
-
+    
         <!-- Descripción del producto -->
         <label for="description">Descripción:</label>
-        <textarea id="description" name="description" required></textarea>
+        <textarea id="description" name="description" placeholder="Describe el producto..." required></textarea>
         <br><br>
-
+    
         <!-- Precio del producto -->
         <label for="price">Precio:</label>
-        <input type="number" id="price" name="price"  required>
+        <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Ejemplo: 19.99" required>
         <br><br>
-
+    
         <!-- Stock del producto -->
         <label for="stock">Stock:</label>
-        <input type="number" id="stock" name="stock"  required>
+        <input type="number" id="stock" name="stock" min="0" placeholder="Ejemplo: 100" required>
         <br><br>
-
-        <label for="user_id">User id:</label>
-        <input type="number" name="user_id">  <!-- Usuario ID está predefinido como 1 en este caso -->
-        <br>
+    
+        <!-- Usuario (opcional: oculto) -->
+        <input type="hidden" name="user_id" value="1">
+    
         <!-- URL de la imagen -->
         <label for="image">Imagen:</label>
-        <input type="file" id="image" name="image"  required>
+        <input type="file" id="image" name="image" accept="image/*" required>
         <br><br>
-
+    
         <!-- Botón de envío -->
         <button type="submit">Guardar Producto</button>
     </form>
-    <img src="http://localhost/storage/img/products/imagen.jpg" alt="">
+    <div id="containnerImage"></div>
     <script src="js/create.js"></script>
 </body>
 </html>
