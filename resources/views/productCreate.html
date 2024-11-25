@@ -1,4 +1,81 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda en Línea</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">Tienda en línea</h1></a>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos...">
+                <button>Buscar</button>
+            </div>
+            <div class="header-buttons">
+            <div class="user">
+                <img src="icons/user-icon.svg" alt="Icono de usuario">
+                <span><a href="">Iniciar sesión</a></span>
+            </div>
+            <div class="cart">
+                <img src="icons/shopping-cart_icon.svg" alt="Icono de carrito">
+                <span>0</span>
+                <span>$0.00</span>
+            </div>
+            </div>
+        </header>
+        <div class="main">
+            <nav>
+                <a href="#">Categorías</a>
+                <a href="#">Lo más vendido</a>
+                <a href="http://127.0.0.1:8000/productCreate">Vender</a>
+                <a href="#">Despensa</a>
+                <a href="#">Juguetes</a>
+                <a href="#">Moda</a>
+            </nav>
+            <form>
+                <!-- Token CSRF (si usas Laravel) -->
+            
+                <!-- Nombre del producto -->
+                <label for="name">Nombre del producto:</label>
+                <input type="text" id="name" name="name" placeholder="Ejemplo: Camiseta" required>
+                <br><br>
+            
+                <!-- Descripción del producto -->
+                <label for="description">Descripción:</label>
+                <textarea id="description" name="description" placeholder="Describe el producto..." required></textarea>
+                <br><br>
+            
+                <!-- Precio del producto -->
+                <label for="price">Precio:</label>
+                <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Ejemplo: 19.99" required>
+                <br><br>
+            
+                <!-- Stock del producto -->
+                <label for="stock">Stock:</label>
+                <input type="number" id="stock" name="stock" min="0" placeholder="Ejemplo: 100" required>
+                <br><br>
+            
+                <!-- Usuario (opcional: oculto) -->
+                <input type="hidden" name="user_id" value="1">
+            
+                <!-- URL de la imagen -->
+                <label for="image">Imagen:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                <br><br>
+            
+                <!-- Botón de envío -->
+                <button type="submit">Guardar Producto</button>
+            </form>
+            <div id="containnerImage"></div>
+            <script src="js/create.js"></script>
+        </div>
+</body>
+</html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,41 +83,6 @@
     <title>Mis Producto</title>
 </head>
 <body>
-    <form>
-        <!-- Token CSRF (si usas Laravel) -->
     
-        <!-- Nombre del producto -->
-        <label for="name">Nombre del producto:</label>
-        <input type="text" id="name" name="name" placeholder="Ejemplo: Camiseta" required>
-        <br><br>
-    
-        <!-- Descripción del producto -->
-        <label for="description">Descripción:</label>
-        <textarea id="description" name="description" placeholder="Describe el producto..." required></textarea>
-        <br><br>
-    
-        <!-- Precio del producto -->
-        <label for="price">Precio:</label>
-        <input type="number" id="price" name="price" step="0.01" min="0" placeholder="Ejemplo: 19.99" required>
-        <br><br>
-    
-        <!-- Stock del producto -->
-        <label for="stock">Stock:</label>
-        <input type="number" id="stock" name="stock" min="0" placeholder="Ejemplo: 100" required>
-        <br><br>
-    
-        <!-- Usuario (opcional: oculto) -->
-        <input type="hidden" name="user_id" value="1">
-    
-        <!-- URL de la imagen -->
-        <label for="image">Imagen:</label>
-        <input type="file" id="image" name="image" accept="image/*" required>
-        <br><br>
-    
-        <!-- Botón de envío -->
-        <button type="submit">Guardar Producto</button>
-    </form>
-    <div id="containnerImage"></div>
-    <script src="js/create.js"></script>
 </body>
 </html>

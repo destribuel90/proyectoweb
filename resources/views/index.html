@@ -9,31 +9,32 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="header__centered">Tienda en línea</h1>
+            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">Tienda en línea</h1></a>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos...">
+                <button>Buscar</button>
+            </div>
             <div class="header-buttons">
             <div class="user">
-                <img src="https://via.placeholder.com/20" alt="Icono de usuario">
-                <span>Iniciar sesión<br>Cuenta</span>
+                <img src="icons/user-icon.svg" alt="Icono de usuario">
+                <span><a href="">Iniciar sesión</a></span>
             </div>
             <div class="cart">
-                <img src="https://via.placeholder.com/20" alt="Icono de carrito">
-                <span>0</span>
+                <img src="icons/shopping-cart_icon.svg" alt="Icono de carrito">
+                <span>0-</span>
                 <span>$0.00</span>
             </div>
             </div>
         </header>
         <div class="main">
             <!-- Barra de Búsqueda -->
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar productos...">
-                <button>Buscar</button>
-            </div>
+
 
             <!-- Navegación de Categorías -->
             <nav>
-                <a href="#">Ofertas</a>
-                <a href="#">Electrónica</a>
-                <a href="#">Hogar</a>
+                <a href="#">Categorías</a>
+                <a href="#">Lo más vendido</a>
+                <a href="http://127.0.0.1:8000/productCreate">Vender</a>
                 <a href="#">Despensa</a>
                 <a href="#">Juguetes</a>
                 <a href="#">Moda</a>
