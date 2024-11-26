@@ -42,7 +42,6 @@ class Products extends Controller
             $fecha = date('Y-m-d').date('His');
             $archivo = $request->file('image');
             $nameFile = "productname" . rand(1000,9999) . $request->user_id . "_" . $fecha . "." . $archivo->extension();
-            $archivo->storeAs('img/products', $nameFile , 'public');
             $product = Product::create([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -58,6 +57,7 @@ class Products extends Controller
                 ];
                 return response()->json($data, 500);
             }
+            $archivo->storeAs('img/products', $nameFile , 'public');
         }else {
             return response()->json(['error' => 'Archivo no válido o no se subió archivo'], 400);
         }
