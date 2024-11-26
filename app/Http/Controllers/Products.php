@@ -38,29 +38,30 @@ class Products extends Controller
             ];
             return response()->json($data, 400);
         }
-            if($request->hasFile('image') && $request->file('image')->isValid()){
-                $fecha = date('Y-m-d').date('His');
-                $archivo = $request->file('image');
-                $nameFile = $request->name . $request->user_id . "_" . $fecha . "." . $archivo->extension();
-                $archivo->storeAs('img/products', $nameFile , 'public');
-            }else {
-                return response()->json(['error' => 'Archivo no válido o no se subió archivo'], 400);
-            }
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $fecha = date('Y-m-d').date('His');
+            $archivo = $request->file('image');
+            $nameFile = "productname" . rand(1000,9999) . $request->user_id . "_" . $fecha . "." . $archivo->extension();
+            $archivo->storeAs('img/products', $nameFile , 'public');
             $product = Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'user_id' => $request->user_id,
-            'image' => $nameFile
-        ]);
-        if(!$product){
-            $data = [
-                'message' => 'Error al crear el producto',
-                'status' => 500
-            ];
-            return response()->json($data, 500);
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'user_id' => $request->user_id,
+                'image' => $nameFile
+            ]);
+            if(!$product){
+                $data = [
+                    'message' => 'Error al crear el producto',
+                    'status' => 500
+                ];
+                return response()->json($data, 500);
+            }
+        }else {
+            return response()->json(['error' => 'Archivo no válido o no se subió archivo'], 400);
         }
+            
         return response()->json(['productos' => $product, 'message' => 'El producto ha sido creado'], 200);
     }
     public function show($id){
