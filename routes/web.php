@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/productCreate', function () {
     return view('productCreate');
 });
+Route::get('/products/{id}', function () {
+    return view('products');
+});

@@ -20,8 +20,7 @@
                 <span><a href="">Iniciar sesión</a></span>
             </div>
             <div class="cart">
-                <img src="icons/shopping-cart_icon.svg" alt="Icono de carrito">
-                <span>0-</span>
+                <object data="icons/shopping-cart_icon.svg" type="image/svg+xml" width="40px" height="40px" id="icon"></object>
                 <span>$0.00</span>
             </div>
             </div>
@@ -32,12 +31,25 @@
 
             <!-- Navegación de Categorías -->
             <nav>
-                <a href="#">Categorías</a>
-                <a href="#">Lo más vendido</a>
-                <a href="http://127.0.0.1:8000/productCreate">Vender</a>
-                <a href="#">Despensa</a>
-                <a href="#">Juguetes</a>
-                <a href="#">Moda</a>
+                <ul class="menu-horizontal">
+                    <li>
+                        <a href="#">Categorías</a>
+                        <ul class="menu-vertical">
+                            <li><a href="curso-html.html">Electronica</a></li>
+                            <li><a href="#">Muebles</a></li>
+                            <li><a href="#">Autos</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Inscripción</a>
+                        <ul class="menu-vertical">
+                            <li><a href="#">Anual</a></li>
+                            <li><a href="#">Mensual</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contacto</a></li>
+        
+                </ul>
             </nav>
 
             <div class="category">

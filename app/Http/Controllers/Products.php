@@ -71,8 +71,10 @@ class Products extends Controller
                 'message' => 'El producto no existe',
                 'status' => 404
             ];
-            return response()->json($product, 200);
+            return response()->json($data);
         }
+
+        return response()->json($product, 200);
     }
     public function update($id){
         $product = Product::find($id);

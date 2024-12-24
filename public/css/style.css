@@ -1,6 +1,11 @@
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
         body {
             height: 100%;
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -18,6 +23,7 @@
             text-decoration: none;
             color: white;
         }
+        
         .main{
             flex: 1;    
         }
@@ -59,6 +65,9 @@
             display: flex;
             justify-content: center;
         }
+        .cart .icon{
+            z-index: 10;
+        }
         .search-bar input[type="text"] {
             width: 100%;
             padding: 8px;
@@ -77,11 +86,41 @@
             padding: 10px;
             text-align: center;
         }
-        nav a {
+        .menu-horizontal{
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+        }
+        .menu-horizontal > li > a{
+            display: flex;
+            flex-direction: column;
+            padding: 15px 20px;
             color: white;
-            margin: 0 15px;
-            text-decoration: none;
             font-weight: bold;
+            text-decoration: none;
+        }
+        .menu-horizontal > li:hover{
+            background-color: red;
+        }
+        .menu-vertical{
+            position: absolute;
+            display: none;
+            list-style: none;
+            background-color: rgba(0, 0, 0, .5);
+        }
+        .menu-horizontal li:hover .menu-vertical{
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-vertical li:hover{
+            background-color: black;
+        }
+        
+        .menu-vertical li a{
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 15px 15px 20px;
         }
         .category {
             padding: 20px;
