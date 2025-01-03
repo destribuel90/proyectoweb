@@ -6,11 +6,13 @@ class Products{
             let content = ``;
             res.forEach(element => {
                 content += `
-                    <div class="product-card">
-                        <img src="http://127.0.0.1:8000/storage/img/products/${element.image}" alt="Producto 1">
-                        <div class="product-name">${element.name}</div>
-                        <div class="product-price">$${element.price}</div>
-                    </div>
+                    <a href="http://127.0.0.1:8000/${element.id}">
+                        <div class="product-card">
+                            <img src="http://127.0.0.1:8000/storage/img/products/${element.image}" alt="Producto 1">
+                            <div class="product-name">${element.name}</div>
+                            <div class="product-price">$${element.price}</div>
+                        </div>
+                    </a>
                 `; 
             }); 
             const containner = document.querySelector('.products');
@@ -20,3 +22,5 @@ class Products{
     
 }
 Products.index();
+const svg = document.querySelector('#text');
+svg.textContent = "2";
