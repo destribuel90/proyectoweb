@@ -6,7 +6,7 @@ class Products{
             let content = ``;
             res.forEach(element => {
                 content += `
-                    <a href="http://127.0.0.1:8000/${element.id}">
+                    <a href="http://127.0.0.1:8000/products/${element.id}">
                         <div class="product-card">
                             <img src="http://127.0.0.1:8000/storage/img/products/${element.image}" alt="Producto 1">
                             <div class="product-name">${element.name}</div>

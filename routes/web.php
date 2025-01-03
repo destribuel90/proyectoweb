@@ -14,11 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('mainpage');
 });
-Route::get('/productCreate', function () {
-    return view('productCreate');
+Route::get('/vender', function () {
+    return view('sellproducts');
 });
 Route::get('/products/{id}', function () {
-    return view('products');
+    return view('vistaProducto');
 });
+Route::get('/sesion', function () {
+    return view('sesion');
+});
+Route::get('/registro', function () {
+    return view('registro');
+});
+
