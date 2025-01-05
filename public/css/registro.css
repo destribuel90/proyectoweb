@@ -1,62 +1,104 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    background: lightgray;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+/* Estilos generales para el formulario */
+form {
+    max-width:  500px; /* Ancho máximo del formulario */
+    margin: 20px auto; /* Centrar */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #e0e0e0; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    font-family: Arial, sans-serif; /* Fuente estándar */
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
 }
 
-.form-register {
-    width: 400px;
-    background: #24303c;
-    padding: 30px;
-    margin: auto;
-    margin-top: 100px;
-    border-radius: 4px;
-    font-family: 'calibri';
-    color: white;
-    box-shadow: 7px 13px 37px #000;
+/* Etiquetas de los campos */
+label {
+    display: block; /* Etiquetas en bloque */
+    margin-bottom: 5px; /* Espacio con el campo */
+    font-size: 14px; /* Tamaño de letra pequeño */
+    color: #333333; /* Color de texto oscuro */
+    font-weight: bold; /* Resaltar texto */
 }
 
-.form-register h4 {
-    font-size: 22px;
+/* Inputs y textarea */
+input[type="text"],
+input[type="number"],
+input[type="file"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+textarea {
+    width: 100%; /* Ancho completo */
+    padding: 12px; /* Espaciado interno */
+    margin-bottom: 20px; /* Separación entre campos */
+    border: 1px solid #e0e0e0; /* Borde gris claro */
+    border-radius: 6px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de letra */
+    color: #333333; /* Color de texto */
+    background-color: #f7f7f7; /* Fondo gris claro */
+    box-sizing: border-box; /* Ajustar padding y borde */
+    transition: border-color 0.3s ease; /* Animación en foco */
+}
+
+/* Estilo para textarea */
+textarea {
+    height: 120px; /* Altura predeterminada */
+    resize: none; /* Sin redimensionamiento */
+}
+
+/* Efecto de foco en inputs y textarea */
+input:focus,
+textarea:focus {
+    border-color: #3483fa; /* Azul de Mercado Libre */
+    background-color: #ffffff; /* Fondo blanco */
+    outline: none; /* Sin contorno adicional */
+}
+
+/* Botón de envío */
+button[type="submit"] {
+    width: 100%; /* Ancho completo */
+    padding: 15px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de letra */
+    font-weight: bold; /* Texto en negrita */
+    color: #ffffff; /* Texto blanco */
+    background-color: #3483fa; /* Azul de Mercado Libre */
+    border: none; /* Sin borde */
+    border-radius: 6px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor a mano */
+    transition: background-color 0.3s ease; /* Animación de color */
+}
+
+/* Hover en el botón */
+button[type="submit"]:hover {
+    background-color: #2968c8; /* Azul más oscuro */
+}
+
+/* Texto adicional o indicaciones */
+small {
+    display: block;
     margin-bottom: 20px;
-
+    font-size: 12px;
+    color: #666666; /* Gris claro */
 }
 
-.controls {
-    width: 100%;
-    background: #24303c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: white;
-}
-
-.form-register p {
-    height: 40px;
+/* Opcional: centrar y estilizar texto */
+form h1 {
+    font-size: 24px;
+    color: #333333;
     text-align: center;
-    font-size: 18px;
+    margin-bottom: 20px;
 }
-
-.form-register a {
-    color: white;
-    text-decoration: none;
-}
-
-.form-register a:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-
-.form-register .botons {
-    width: 100%;
-    background: #1f53c5;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 16px;
+p{
+    margin-top: 10px;
 }

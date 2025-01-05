@@ -14,7 +14,7 @@ class Ventas extends Controller
     }
     public function store(){
         $product = Product::where('id', request()->id);
-        $user = User::where('id', request()->session()->get('id'));
+        $user = User::where('id', $_SESSION['user_id']);
         if($user->current_balance < $product->price){
             return response()->json(['message' => 'saldo insuficiente'], 400);
         }

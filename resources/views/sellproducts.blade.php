@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda en Línea</title>
+    <title>TAGE</title>
     <link rel="stylesheet" href="css/sellstyle.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">Tienda en línea</h1></a>
+            <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">TAGE</h1></a>
             <div class="search-bar">
                 <input type="text" placeholder="Buscar productos...">
                 <button>Buscar</button>
@@ -30,7 +30,7 @@
             <nav>
                 <a href="#">Categorías</a>
                 <a href="#">Lo más vendido</a>
-                <a href="http://127.0.0.1:8000/productCreate">Vender</a>
+                <a href="{{ env('APP_URLDES')}}/productCreate">Vender</a>
                 <a href="#">Despensa</a>
                 <a href="#">Juguetes</a>
                 <a href="#">Moda</a>
@@ -63,19 +63,9 @@
             </form>
                         
             <div id="containnerImage"></div>
-            <script src="js/create.js"></script>
         </div>
+        <script type="module" src="{{ env('APP_URLDES')}}/js/constantes.js"></script>
+        <script src="{{ env('APP_URLDES')}}/js/create.js"></script>
 </body>
 </html>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Producto</title>
-</head>
-<body>
-    
-</body>
-</html>

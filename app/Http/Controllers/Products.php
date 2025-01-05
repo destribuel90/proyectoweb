@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class Products extends Controller
 {
@@ -26,7 +28,7 @@ class Products extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'required|max:700',
-            'price' => 'required|numeric',
+            'price' => 'require d|numeric',
             'stock' => 'required|integer',
             'image' => 'nullable|image', 
         ]);
@@ -41,13 +43,14 @@ class Products extends Controller
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $fecha = date('Y-m-d').date('His');
             $archivo = $request->file('image');
-            $nameFile = "productname" . rand(1000,9999) . $request->user_id . "_" . $fecha . "." . $archivo->extension();
+            $nameFile = "productname" . rand(1000,9999) . "_" . $fecha . "." . $archivo->extension();
+            $id = $_SESSION['user_id'];
             $product = Product::create([
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
                 'stock' => $request->stock,
-                'user_id' => $request->user_id,
+                'user_id' => $id,
                 'image' => $nameFile
             ]);
             if(!$product){
@@ -64,18 +67,27 @@ class Products extends Controller
             
         return response()->json(['productos' => $product, 'message' => 'El producto ha sido creado'], 200);
     }
-    public function show($id){
-        $product = Product::find($id);
-        if(!$product){
+    public function show($id) {
+        // Buscar el producto con el ID dado
+        $product = DB::table('products')
+            ->join('users', 'products.user_id', '=', 'users.id')
+            ->where('products.id', $id)
+            ->select('products.id', 'products.name', 'products.description', 'products.price', 'products.stock', 'products.user_id', 'products.image', 'users.name as name_user', 'users.image as image_user')
+            ->first(); // Usar first() en lugar de get() para obtener un solo producto
+    
+        // Si no se encuentra el producto
+        if (!$product) {
             $data = [
                 'message' => 'El producto no existe',
                 'status' => 404
             ];
-            return response()->json($data);
+            return response()->json($data, 404);
         }
-
+    
+        // Si el producto existe, devolver los datos
         return response()->json($product, 200);
     }
+    
     public function update($id){
         $product = Product::find($id);
         if(!$product){
@@ -87,5 +99,9 @@ class Products extends Controller
         }
         $product->name = request()->name;
         $product->description = request()->description;
+    }
+    public function search($data){
+        $results = Product::where('name', 'like',  $data . '%' )->get();
+        return response()->json($results, 200);
     }
 }

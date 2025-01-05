@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda en Línea</title>
+    <title>TAGE</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">Tienda en línea</h1></a>
+            <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">TAGE</h1></a>
             <div class="search-bar">
-                <input type="text" placeholder="Buscar productos...">
-                <button>Buscar</button>
+                <input type="text" placeholder="Buscar productos..."  id="search-bar-text">
+                <button id="search-bar-button">Buscar</button>
             </div>
             <div class="header-buttons">
             <div class="user">
-                <img src="icons/user-icon.svg" alt="Icono de usuario">
-                <span><a href="http://127.0.0.1:8000/sesion">Iniciar sesión</a></span>
+                <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                <span><a href="{{ env('APP_URLDES')}}/sesion" id="Iniciar">Iniciar sesión</a></span>
             </div>
             <div class="cart">
-                <object data="icons/shopping-cart_icon.svg" type="image/svg+xml" width="40px" height="40px" id="icon"></object>
-                <span>$0.00</span>
+                <a href="{{ env('APP_URLDES')}}/cart"><object data="icons/shopping-cart_icon.svg" type="image/svg+xml" width="40px" height="40px" id="icon"></object></a>
+                <span id="saldo">$0.00</span>
             </div>
             </div>
         </header>
@@ -48,7 +48,7 @@
                         </ul>
                     </li>
                     <li><a href="#">Contacto</a></li>
-                    <li><a href="http://127.0.0.1:8000/vender">Vender</a></li>
+                    <li><a href="{{ env('APP_URLDES')}}/vender">Vender</a></li>
                 </ul>
             </nav>
 
@@ -64,7 +64,9 @@
         <footer>
             <p>&copy; 2025 Tienda en Línea. Todos los derechos reservados.</p>
         </footer>
-        <script src="js/products.js"></script>
+        <script type="module" src="js/constantes.js"></script>
+        <script type="module" src="js/products.js"></script>
+        <script type="module" src="js/dataUser.js"></script>
     </div>
 </body>
 </html>
