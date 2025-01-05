@@ -180,7 +180,20 @@
                         font-size: 1.75em;
                         margin-bottom: 0.5rem;
                     }
-                    
+                    .btn-cerrar-sesion {
+                        background-color: #FF4C4C; /* Rojo */
+                        color: white;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease;
+                    }
+
+                    .btn-cerrar-sesion:hover {
+                        background-color: #FF0000; /* Rojo intenso en hover */
+                    }
                     .seccion-perfil-usuario .perfil-usuario-body .texto {
                         color: #848484;
                         font-size: 0.95em;
@@ -190,6 +203,7 @@
                     .seccion-perfil-usuario .perfil-usuario-bio {
                         display: flex;
                         flex-wrap: wrap;
+                        justify-content: center;
                         padding: 1.5rem 2rem;
                         box-shadow: 0 0 12px rgba(0, 0, 0, .2);
                         background-color: #fff;
@@ -200,6 +214,7 @@
                     .seccion-perfil-usuario .perfil-usuario-bio {
                         margin-bottom: 1.25rem;
                         text-align: center;
+                        align-content: center;
                     }
                     
                     .seccion-perfil-usuario .lista-datos {
@@ -299,22 +314,15 @@
                             <div class="perfil-usuario-body">
                                 <div class="perfil-usuario-bio">
                                     <h3 class="titulo">Maria Alejandra De la Cruz</h3>
-                                    <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <button class="btn-cerrar-sesion">Cerrar Sesión</button>
                                 </div>
                                 <div class="perfil-usuario-footer">
                                     <ul class="lista-datos">
-                                        <li><i class="icono fas fa-map-signs"></i> Direccion de usuario:</li>
-                                        <li><i class="icono fas fa-phone-alt"></i> Telefono:</li>
-                                        <li><i class="icono fas fa-briefcase"></i> Trabaja en.</li>
-                                        <li><i class="icono fas fa-building"></i> Cargo</li>
+                                        <li><i class="icono fas fa-map-signs"></i> <a href="">Mis productos</a></li>
+                                        <li><i class="icono fas fa-phone-alt"></i> <a href="">Mis compras</a></li>
+                                        <li><i class="icono fas fa-briefcase"></i>Saldo: <input type="number" id="sala"> <button>actualizar</button></li>
                                     </ul>
-                                    <ul class="lista-datos">
-                                        <li><i class="icono fas fa-map-marker-alt"></i> Ubicacion.</li>
-                                        <li><i class="icono fas fa-calendar-alt"></i> Fecha nacimiento.</li>
-                                        <li><i class="icono fas fa-user-check"></i> Registro.</li>
-                                        <li><i class="icono fas fa-share-alt"></i> Redes sociales.</li>
-                                    </ul>
+
                                 </div>
                                 <div class="redes-sociales">
                                     <a href="" class="boton-redes facebook fab fa-facebook-f"><i class="icon-facebook"></i></a>

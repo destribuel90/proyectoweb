@@ -1,5 +1,6 @@
 const Avatar = document.querySelector('#avatar');
 const Title = document.querySelector('.titulo');
+const Sala = document.querySelector('#sala');
 async function verificarSesion() {
     try {
 
@@ -21,6 +22,7 @@ async function verificarSesion() {
             // Mostrar el nombre del usuario
             Title.textContent = Userdata.name;
             Avatar.src = `${URL}/storage/img/users/${Userdata.image}`;
+            Sala.value = parseFloat(Userdata.current_balance).toFixed(2); // Dos decimales
 
         } else {
             iniciar.textContent = 'Iniciar sesión'; // Si la sesión no está activa
@@ -32,3 +34,28 @@ async function verificarSesion() {
 }
 
 verificarSesion();
+
+
+
+document.querySelector('.btn-cerrar-sesion').addEventListener('click', function () {
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    fetch(`${URL}/api/logout`, options)
+        .then(res => res.json())
+        .then(res => {
+            if (res.logout) {
+                window.location.href = URL; // Redirige al usuario a la página principal
+            } else {
+                console.error('Error al cerrar sesión:', res.message);
+            }
+        })
+        .catch(e => {
+            console.error('Error en la solicitud:', e);
+            alert('Ocurrió un error al intentar cerrar la sesión.');
+        });
+});
