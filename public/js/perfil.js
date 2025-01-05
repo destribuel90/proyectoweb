@@ -1,11 +1,7 @@
-const iniciar = document.querySelector('#Iniciar');
-const img = document.querySelector('#imgUser');
-const saldo = document.querySelector('#saldo');
-
-
+const Avatar = document.querySelector('#avatar');
+const Title = document.querySelector('.titulo');
 async function verificarSesion() {
     try {
-        iniciar.textContent = 'Verificando sesión...'; // Mostrar mensaje de carga
 
         // Verificar si la sesión está activa
         const res = await fetch(URL + '/api/sessionStatus');
@@ -23,10 +19,8 @@ async function verificarSesion() {
             const Userdata = await data.json();
 
             // Mostrar el nombre del usuario
-            iniciar.textContent = Userdata.name;
-            iniciar.href = URL + '/perfil';
-            img.src = `${URL}/storage/img/users/${Userdata.image}`;
-            saldo.textContent = '$' + parseFloat(Userdata.current_balance).toFixed(2);
+            Title.textContent = Userdata.name;
+            Avatar.src = `${URL}/storage/img/users/${Userdata.image}`;
 
         } else {
             iniciar.textContent = 'Iniciar sesión'; // Si la sesión no está activa

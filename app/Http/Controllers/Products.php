@@ -104,4 +104,26 @@ class Products extends Controller
         $results = Product::where('name', 'like',  $data . '%' )->get();
         return response()->json($results, 200);
     }
+    public function updateProductStock(Request $request) {
+        try {
+            $productId = $request->input('product_id');
+            $quantity = $request->input('quantity');
+    
+            $product = Product::findOrFail($productId);
+    
+            // Verifica que el stock sea suficiente o suficiente para restar
+            if ($product->stock + $quantity < 0) {
+                return response()->json(['message' => 'Stock insuficiente para realizar la operación', 'status' => false], 400);
+            }
+    
+            // Actualiza el stock
+            $product->stock += $quantity;
+            $product->save();
+    
+            return response()->json(['message' => 'Stock actualizado correctamente', 'status' => true, 'stock' => $product->stock], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => false], 500);
+        }
+    }
+    
 }

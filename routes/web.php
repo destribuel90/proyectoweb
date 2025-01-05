@@ -48,6 +48,10 @@ Route::get('/search/{data}', function () {
     return view('search');
 });
 
+Route::get('/perfil', function () {
+    return view('perfil');
+});
+
 
 
 

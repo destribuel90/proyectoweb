@@ -93,7 +93,7 @@
                                     <i class="fa-solid fa-chevron-down" id="decrement"></i>
                                 </div>
                             </div>
-                            <button class="btn-add-to-cart">
+                            <button class="btn-add-to-cart" id="open">
                                 Comprar
                             </button>
                         </div>
@@ -137,6 +137,16 @@
         </footer>
         
     </div>
+    <div id="modal_container" class="modal-container">
+  <div class="modal">
+    <h1>Confirmar compra</h1>
+    <p>
+        <div>Si deseas realizar la compra da click en confirmar</div>
+        <div id="verificacion"></div>
+    </p>
+    <button id="close" class="modal-button">Confirmar</button>
+    <button id="cerrar" class="modal-button">Cerrar</button>
+  </div>
     <script type="module" src="{{ env('APP_URLDES')}}/js/constantes.js"></script>
     <script type="module" src="{{ env('APP_URLDES')}}/js/vistaproducto.js"></script>
     <script type="module" src="{{ env('APP_URLDES')}}/js/dataUser.js"></script>
