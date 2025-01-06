@@ -1,46 +1,41 @@
-*{
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+/* Estilo general del cuerpo */
 body {
     background: lightgray;
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
+/* Estilo del encabezado */
 header {
     display: flex;
-    height: 50px;
-    align-items: center; /* Alinea los elementos verticalmente */
-/* Espacia el título y los botones */
+    align-items: center;
     gap: 80px;
     padding: 10px 20px;
-    background-color: #589ceb; /* Fondo morado */
+    background-color: #589ceb;
     color: white;
+    height: 50px;
 }
-header a{
+header a {
     text-decoration: none;
     color: white;
 }
-.main{
-    flex: 1;    
-}
-.container{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que ocupe toda la ventana */
+.header__centered {
+    font-size: 24px;
+    margin: 0;
 }
 .header-buttons {
     display: flex;
     align-items: center;
     margin-left: auto;
-}
-.header__centered{
-    left: 50%; /* Mueve el elemento al centro horizontal */
-    font-size: 24px;
-    margin: 0; /* Elimina el margen del h1 */
 }
 .header-buttons div {
     margin-right: 20px;
@@ -54,21 +49,20 @@ header a{
     width: 30px;
     height: 30px;
     margin-right: 5px;
-    border-radius: 50%;    /* Hace que la imagen sea redonda */
-    object-fit: cover;     /* Asegura que la imagen se recorte para ajustarse al círculo */
+    border-radius: 50%;
+    object-fit: cover;
 }
-.user span a{
+.user span a {
     text-decoration: none;
     color: white;
 }
+
+/* Barra de búsqueda */
 .search-bar {
     margin: 10px;
     width: 50vw;
     display: flex;
     justify-content: center;
-}
-.cart .icon{
-    z-index: 10;
 }
 .search-bar input[type="text"] {
     width: 100%;
@@ -82,18 +76,20 @@ header a{
     cursor: pointer;
     font-size: 16px;
 }
+
+/* Navegación */
 nav {
     background-color: #333;
     color: white;
     padding: 10px;
     text-align: center;
 }
-.menu-horizontal{
+.menu-horizontal {
     list-style: none;
     display: flex;
     justify-content: space-around;
 }
-.menu-horizontal > li > a{
+.menu-horizontal > li > a {
     display: flex;
     flex-direction: column;
     padding: 15px 20px;
@@ -101,33 +97,36 @@ nav {
     font-weight: bold;
     text-decoration: none;
 }
-.menu-horizontal > li:hover{
+.menu-horizontal > li:hover {
     background-color: red;
 }
-.menu-vertical{
+.menu-vertical {
     position: absolute;
     display: none;
     list-style: none;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.menu-horizontal li:hover .menu-vertical{
+.menu-horizontal li:hover .menu-vertical {
     display: flex;
     flex-direction: column;
 }
-.menu-vertical li:hover{
+.menu-vertical li:hover {
     background-color: black;
 }
-
-.menu-vertical li a{
+.menu-vertical li a {
     display: block;
     color: white;
     text-decoration: none;
-    padding: 15px 15px 15px 20px;
+    padding: 15px 20px;
 }
+
+/* Categorías */
 .category {
     padding: 20px;
     text-align: center;
 }
+
+/* Productos */
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -152,104 +151,88 @@ nav {
     margin-top: 10px;
     width: 100%;
     text-align: center;
-    text-wrap: wrap;
 }
 .product-price {
     color: #57AB27;
     font-size: 18px;
     margin-top: 5px;
 }
+
+/* Pie de página */
 footer {
     background-color: #333;
-    height: 50px;
     color: white;
     text-align: center;
     padding: 10px;
+    height: 50px;
     margin-top: 20px;
 }
-/* Estilos generales para el formulario */
+
+/* Formulario */
 form {
-    max-width: 700px; /* Ancho máximo del formulario */
-    margin: 20px auto; /* Centrar */
-    padding: 20px; /* Espaciado interno */
-    border: 1px solid #e0e0e0; /* Borde gris claro */
-    border-radius: 8px; /* Bordes redondeados */
-    font-family: Arial, sans-serif; /* Fuente estándar */
-    background-color: #ffffff; /* Fondo blanco */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-/* Etiquetas de los campos */
 label {
-    display: block; /* Etiquetas en bloque */
-    margin-bottom: 5px; /* Espacio con el campo */
-    font-size: 14px; /* Tamaño de letra pequeño */
-    color: #333333; /* Color de texto oscuro */
-    font-weight: bold; /* Resaltar texto */
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333333;
+    font-weight: bold;
 }
-
-/* Inputs y textarea */
 input[type="text"],
 input[type="number"],
 input[type="file"],
 textarea {
-    width: 100%; /* Ancho completo */
-    padding: 12px; /* Espaciado interno */
-    margin-bottom: 20px; /* Separación entre campos */
-    border: 1px solid #e0e0e0; /* Borde gris claro */
-    border-radius: 6px; /* Bordes redondeados */
-    font-size: 16px; /* Tamaño de letra */
-    color: #333333; /* Color de texto */
-    background-color: #f7f7f7; /* Fondo gris claro */
-    box-sizing: border-box; /* Ajustar padding y borde */
-    transition: border-color 0.3s ease; /* Animación en foco */
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #333333;
+    background-color: #f7f7f7;
+    transition: border-color 0.3s ease;
 }
-
-/* Estilo para textarea */
 textarea {
-    height: 120px; /* Altura predeterminada */
-    resize: none; /* Sin redimensionamiento */
+    height: 120px;
+    resize: none;
 }
-
-/* Efecto de foco en inputs y textarea */
 input:focus,
 textarea:focus {
-    border-color: #3483fa; /* Azul de Mercado Libre */
-    background-color: #ffffff; /* Fondo blanco */
-    outline: none; /* Sin contorno adicional */
+    border-color: #3483fa;
+    background-color: #ffffff;
+    outline: none;
 }
-
-/* Botón de envío */
 button[type="submit"] {
-    width: 100%; /* Ancho completo */
-    padding: 15px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de letra */
-    font-weight: bold; /* Texto en negrita */
-    color: #ffffff; /* Texto blanco */
-    background-color: #3483fa; /* Azul de Mercado Libre */
-    border: none; /* Sin borde */
-    border-radius: 6px; /* Bordes redondeados */
-    cursor: pointer; /* Cambiar cursor a mano */
-    transition: background-color 0.3s ease; /* Animación de color */
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #3483fa;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
-/* Hover en el botón */
 button[type="submit"]:hover {
-    background-color: #2968c8; /* Azul más oscuro */
+    background-color: #2968c8;
 }
-
-/* Texto adicional o indicaciones */
-small {
-    display: block;
-    margin-bottom: 20px;
-    font-size: 12px;
-    color: #666666; /* Gris claro */
-}
-
-/* Opcional: centrar y estilizar texto */
 form h1 {
     font-size: 24px;
     color: #333333;
     text-align: center;
     margin-bottom: 20px;
+}
+small {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #666666;
 }
