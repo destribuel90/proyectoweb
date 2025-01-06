@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda en Línea</title>
+    <title>TAGE</title>
     <link rel="stylesheet" href="{{ env('APP_URLDES')}}/css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">Tienda en línea</h1></a>
+            <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">TAGE</h1></a>
             <div class="search-bar">
                 <input type="text" placeholder="Buscar productos..."  id="search-bar-text">
                 <button id="search-bar-button">Buscar</button>
@@ -62,7 +62,7 @@
         </div>
         <!-- Pie de Página -->
         <footer>
-            <p>&copy; 2025 Tienda en Línea. Todos los derechos reservados.</p>
+            <p>&copy; TAGE. Todos los derechos reservados.</p>
         </footer>
         <script type="module" src="{{ env('APP_URLDES')}}/js/constantes.js"></script>
         <script type="module" src="{{ env('APP_URLDES')}}/js/search.js"></script>
