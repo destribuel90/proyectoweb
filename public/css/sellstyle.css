@@ -61,6 +61,7 @@ header a{
     border: 1px solid #ccc; /* Borde gris */
     border-radius: 5px 0 0 5px; /* Bordes redondeados a la izquierda */
     outline: none; /* Sin contorno adicional */
+    margin: 0 auto; /* Centra horizontalmente */
 }
 
 .search-bar button {
