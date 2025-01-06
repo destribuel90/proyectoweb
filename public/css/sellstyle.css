@@ -24,6 +24,141 @@ header a{
     text-decoration: none;
     color: white;
 }
+.main{
+    flex: 1;    
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que ocupe toda la ventana */
+}
+.header-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.header__centered{
+    left: 50%; /* Mueve el elemento al centro horizontal */
+    font-size: 24px;
+    margin: 0; /* Elimina el margen del h1 */
+}
+.header-buttons div {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.header-buttons div img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border-radius: 50%;    /* Hace que la imagen sea redonda */
+    object-fit: cover;     /* Asegura que la imagen se recorte para ajustarse al círculo */
+}
+.user span a{
+    text-decoration: none;
+    color: white;
+}
+.search-bar {
+    margin: 10px;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+}
+.cart .icon{
+    z-index: 10;
+}
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+.search-bar button {
+    padding: 8px 16px;
+    background-color: #FDD835;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.menu-horizontal{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.menu-horizontal > li > a{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.menu-horizontal > li:hover{
+    background-color: red;
+}
+.menu-vertical{
+    position: absolute;
+    display: none;
+    list-style: none;
+    background-color: rgba(0, 0, 0, .5);
+}
+.menu-horizontal li:hover .menu-vertical{
+    display: flex;
+    flex-direction: column;
+}
+.menu-vertical li:hover{
+    background-color: black;
+}
+
+.menu-vertical li a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 15px 15px 20px;
+}
+.category {
+    padding: 20px;
+    text-align: center;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: white;
+    height: 290px;
+}
+.product-card img {
+    width: 180px;
+    height: 180px;
+    border-radius: 5px;
+}
+.product-name {
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    text-wrap: wrap;
+}
+.product-price {
+    color: #57AB27;
+    font-size: 18px;
+    margin-top: 5px;
+}
 /* Estilos generales para el formulario */
 form {
     max-width: 700px; /* Ancho máximo del formulario */
