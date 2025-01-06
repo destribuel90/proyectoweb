@@ -56,6 +56,8 @@ Route::get('/portada', function () {
     return view('portada');
 });
 
-
+Route::get('/alumnos', function () {
+    return view('alumnos');
+});
 
 
