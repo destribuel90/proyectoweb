@@ -60,4 +60,14 @@ Route::get('/alumnos', function () {
     return view('alumnos');
 });
 
+Route::get('/autos', function () {
+    return view('autos');
+});
 
+Route::get('/electronica', function () {
+    return view('electronica');
+});
+
+Route::get('/muebles', function () {
+    return view('muebles');
+});
