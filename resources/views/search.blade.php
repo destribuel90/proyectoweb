@@ -62,7 +62,7 @@
         </div>
         <!-- Pie de Página -->
         <footer>
-            <p>&copy; TAGE. Todos los derechos reservados.</p>
+            <p>&copy; 2025 TAGE. Todos los derechos reservados.</p>
         </footer>
         <script type="module" src="{{ env('APP_URLDES')}}/js/constantes.js"></script>
         <script type="module" src="{{ env('APP_URLDES')}}/js/search.js"></script>
