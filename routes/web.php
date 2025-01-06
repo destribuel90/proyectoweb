@@ -52,6 +52,10 @@ Route::get('/perfil', function () {
     return view('perfil');
 });
 
+Route::get('/portada', function () {
+    return view('portada');
+});
+
 
 
 
