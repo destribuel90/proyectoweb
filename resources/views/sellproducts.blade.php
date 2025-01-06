@@ -11,30 +11,51 @@
         <header>
             <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">TAGE</h1></a>
             <div class="search-bar">
-                <input type="text" placeholder="Buscar productos...">
-                <button>Buscar</button>
+                <input type="text" placeholder="Buscar productos..."  id="search-bar-text">
+                <button id="search-bar-button">Buscar</button>
             </div>
             <div class="header-buttons">
             <div class="user">
-                <img src="icons/user-icon.svg" alt="Icono de usuario">
-                <span><a href="">Iniciar sesión</a></span>
+                <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                <span><a href="{{ env('APP_URLDES')}}/sesion" id="Iniciar">Iniciar sesión</a></span>
             </div>
             <div class="cart">
-                <img src="icons/shopping-cart_icon.svg" alt="Icono de carrito">
-                <span>0</span>
-                <span>$0.00</span>
+                <a href="{{ env('APP_URLDES')}}/cart"><object data="icons/shopping-cart_icon.svg" type="image/svg+xml" width="40px" height="40px" id="icon"></object></a>
+                <span id="saldo">$0.00</span>
             </div>
             </div>
         </header>
         <div class="main">
+            <!-- Barra de Búsqueda -->
+
+
+            <!-- Navegación de Categorías -->
             <nav>
-                <a href="#">Categorías</a>
-                <a href="#">Lo más vendido</a>
-                <a href="{{ env('APP_URLDES')}}/productCreate">Vender</a>
-                <a href="#">Despensa</a>
-                <a href="#">Juguetes</a>
-                <a href="#">Moda</a>
+                <ul class="menu-horizontal">
+                    <li>
+                        <a href="#">Categorías</a>
+                        <ul class="menu-vertical">
+                            <li><a href="curso-html.html">Electronica</a></li>
+                            <li><a href="#">Muebles</a></li>
+                            <li><a href="#">Autos</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Inscripción</a>
+                        <ul class="menu-vertical">
+                            <li><a href="#">Anual</a></li>
+                            <li><a href="#">Mensual</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="{{ env('APP_URLDES')}}/vender">Vender</a></li>
+                </ul>
             </nav>
+            
+            <div class="products">
+                <!-- Aquí van los elementos -->
+            </div>
+        </div>
             <form>
                 <h1>Publicar Producto</h1>
             
