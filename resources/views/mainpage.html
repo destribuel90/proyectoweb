@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAGE</title>
-    <link rel="stylesheet" href="{{ env('APP_URLDES')}}/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">TAGE</h1></a>
+            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">TAGE</h1></a>
             <div class="search-bar">
                 <input type="text" placeholder="Buscar productos..."  id="search-bar-text">
                 <button id="search-bar-button">Buscar</button>
             </div>
             <div class="header-buttons">
             <div class="user">
-                <img src="{{ env('APP_URLDES')}}/icons/user-icon.svg" alt="Icono de usuario">
-                <span><a href="{{ env('APP_URLDES')}}/sesion">Iniciar sesión</a></span>
+                <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                <span><a href="http://127.0.0.1:8000/sesion" id="Iniciar">Iniciar sesión</a></span>
             </div>
             <div class="cart">
-                <a href="{{ env('APP_URLDES')}}/cart"><object data="{{ env('APP_URLDES')}}/icons/shopping-cart_icon.svg" type="image/svg+xml" width="40px" height="40px" id="icon"></object></a>
-                <span>$0.00</span>
+                <span id="saldo">$0.00</span>
             </div>
             </div>
         </header>
@@ -48,12 +47,12 @@
                         </ul>
                     </li>
                     <li><a href="#">Contacto</a></li>
-                    <li><a href="{{ env('APP_URLDES')}}/vender">Vender</a></li>
+                    <li><a href="http://127.0.0.1:8000/vender">Vender</a></li>
                 </ul>
             </nav>
 
             <div class="category">
-                <h2 id="resultado"></h2>
+                <h2>Categorías Populares</h2>
             </div>
 
             <div class="products">
@@ -64,8 +63,10 @@
         <footer>
             <p>&copy; 2025 TAGE. Todos los derechos reservados.</p>
         </footer>
-        <script type="module" src="{{ env('APP_URLDES')}}/js/constantes.js"></script>
-        <script type="module" src="{{ env('APP_URLDES')}}/js/search.js"></script>
+        <script type="module" src="js/constantes.js"></script>
+        <script type="module" src="js/products.js"></script>
+        <script type="module" src="js/dataUser.js"></script>
+        <script type="module" src="js/buscador.js"></script>
     </div>
 </body>
 </html>

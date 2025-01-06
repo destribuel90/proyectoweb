@@ -19,7 +19,6 @@ class Ventas extends Controller
     
             $product = Product::findOrFail(request()->id);
             $user = User::findOrFail($_SESSION['user_id']);
-            $vendedor = User::findOrFail($product->user_id);
     
             // Verificar que el stock a comprar sea mayor que 0
             $requested_stock = request()->stock;
@@ -42,7 +41,8 @@ class Ventas extends Controller
             // Actualización del saldo del usuario
             $user->current_balance -= $product->price * $requested_stock;
             $user->save();
-    
+            $vendedor = User::findOrFail($product->user_id);
+            
             // Actualización del saldo del vendedor
             $vendedor->current_balance += $product->price * $requested_stock;
             $vendedor->save();

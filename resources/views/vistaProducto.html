@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAGE</title>
-    <link rel="stylesheet" href="{{ env('APP_URLDES')}}/css/style.css">
-    <link rel="stylesheet" href="{{ env('APP_URLDES')}}/css/productos.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/style.css">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/css/productos.css">
 
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="{{ env('APP_URLDES')}}/"><h1 class="header__centered">TAGE</h1></a>
+            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">TAGE</h1></a>
             <div class="search-bar">
                 <input type="text" placeholder="Buscar productos..." id="search-bar-text">
                 <button id="search-bar-button">Buscar</button>
@@ -19,10 +19,9 @@
             <div class="header-buttons">
                 <div class="user">
                     <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
-                    <span><a href="{{ env('APP_URLDES')}}/sesion" id="Iniciar">Iniciar sesión</a></span>
+                    <span><a href="http://127.0.0.1:8000/sesion" id="Iniciar">Iniciar sesión</a></span>
                 </div>
                 <div class="cart">
-                    <a href="{{ env('APP_URLDES')}}/cart"><object data="icons/shopping-cart_icon.svg" type="image/svg+xml" width="40px" height="40px" id="icon"></object></a>
                     <span id="saldo">$0.00</span>
                 </div>
             </div>
@@ -50,7 +49,7 @@
                         </ul>
                     </li>
                     <li><a href="#">Contacto</a></li>
-                    <li><a href="{{ env('APP_URLDES')}}/vender">Vender</a></li>
+                    <li><a href="http://127.0.0.1:8000/vender">Vender</a></li>
                 </ul>
             </nav>
 
@@ -147,12 +146,13 @@
     <button id="close" class="modal-button">Confirmar</button>
     <button id="cerrar" class="modal-button">Cerrar</button>
   </div>
-    <script type="module" src="{{ env('APP_URLDES')}}/js/constantes.js"></script>
-    <script type="module" src="{{ env('APP_URLDES')}}/js/vistaproducto.js"></script>
-    <script type="module" src="{{ env('APP_URLDES')}}/js/dataUser.js"></script>
+    <script type="module" src="http://127.0.0.1:8000/js/constantes.js"></script>
+    <script type="module" src="http://127.0.0.1:8000/js/vistaproducto.js"></script>
+    <script type="module" src="http://127.0.0.1:8000/js/dataUser.js"></script>
     <script
         src="https://kit.fontawesome.com/81581fb069.js"
         crossorigin="anonymous"
     ></script>
+    <script type="module" src="http://127.0.0.1:8000/js/buscador.js"></script>
 </body>
 </html>
