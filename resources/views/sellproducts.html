@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAGE</title>
-    <link rel="stylesheet" href="css/sellstyle.css">
+    <link rel="stylesheet" href="/css/sellstyle.css">
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@
             </div>
             <div class="header-buttons">
             <div class="user">
-                <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                <img src="/icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
                 <span><a href="http://127.0.0.1:8000/sesion" id="Iniciar">Iniciar sesión</a></span>
             </div>
             <div class="cart">
@@ -42,11 +42,8 @@
                     <li>
                         <a href="#">Contactos</a>
                         <ul class="menu-vertical">
-                            <li><a href="http://127.0.0.1:8000/alumnos">Alumnos</a></li>
-                            <li><a href="https://www.cecyt8.ipn.mx/">Escuela</a></li>
                         </ul>
                     </li>
-                    <li><a href="http://127.0.0.1:8000/portada">Portada</a></li>
                     <li><a href="http://127.0.0.1:8000/vender">Vender</a></li>
                 </ul>
             </nav>
@@ -55,7 +52,7 @@
                 <!-- Aquí van los elementos -->
             </div>
         </div>
-            <form>
+            <form id="form-producto">
                 <h1>Publicar Producto</h1>
             
                 <!-- Nombre del producto -->
@@ -80,14 +77,14 @@
             
                 <!-- Botón de envío -->
                 <button type="submit">Guardar Producto</button>
+                <p id="publish-message" role="status" aria-live="polite"></p>
             </form>
                         
             <div id="containnerImage"></div>
         </div>
-        <script src="http://127.0.0.1:8000/js/constantes.js"></script>
-        <script src="http://127.0.0.1:8000/js/create.js"></script>
-        <script src="http://127.0.0.1:8000/js/dataUser.js"></script>
-        <script type="module" src="http://127.0.0.1:8000/js/buscador.js"></script>
+        <script src="/js/constantes.js"></script>
+        <script src="/js/create.js"></script>
+        <script src="/js/dataUser.js"></script>
+        <script type="module" src="/js/buscador.js"></script>
 </body>
 </html>
-

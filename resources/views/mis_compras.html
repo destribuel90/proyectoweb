@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis compras | TAGE</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/my-lists.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/"><h1 class="header__centered">TAGE</h1></a>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos..." id="search-bar-text">
+                <button id="search-bar-button">Buscar</button>
+            </div>
+            <div class="header-buttons">
+                <div class="user">
+                    <img src="/icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                    <span><a href="/sesion" id="Iniciar">Iniciar sesión</a></span>
+                </div>
+                <div class="cart"><span id="saldo">$0.00</span></div>
+            </div>
+        </header>
+        <div class="main">
+            <nav>
+                <ul class="menu-horizontal">
+                    <li><a href="/electronica">Electrónica</a></li>
+                    <li><a href="/muebles">Muebles</a></li>
+                    <li><a href="/autos">Autos</a></li>
+                    <li><a href="/vender">Vender</a></li>
+                    <li><a href="/perfil">Mi perfil</a></li>
+                </ul>
+            </nav>
+            <main class="list-page">
+                <div class="list-heading">
+                    <h2>Mis compras</h2>
+                    <a class="list-action" href="/">Seguir comprando</a>
+                </div>
+                <p id="list-message" class="list-message" role="status" aria-live="polite">Cargando compras...</p>
+                <section id="list-items" class="list-items" aria-label="Historial de compras"></section>
+            </main>
+        </div>
+        <footer><p>&copy; 2026 TAGE. Todos los derechos reservados.</p></footer>
+    </div>
+    <script src="/js/constantes.js"></script>
+    <script type="module" src="/js/dataUser.js"></script>
+    <script type="module" src="/js/my-purchases.js"></script>
+    <script type="module" src="/js/buscador.js"></script>
+</body>
+</html>

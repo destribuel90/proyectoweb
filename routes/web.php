@@ -19,20 +19,13 @@ Route::get('/', function () {
 
 
 Route::get('/vender', function () {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    if (isset($_SESSION['user_id'])) {
-        return view('sellproducts');
-    }
-    return view('sesion');
+    return view('sellproducts');
 });
 
 
 Route::get('/sesion', function () {
     return view('sesion');
-});
+})->name('sesion');
 
 
 Route::get('/products/{id}', function () {
@@ -50,6 +43,14 @@ Route::get('/search/{data}', function () {
 
 Route::get('/perfil', function () {
     return view('perfil');
+});
+
+Route::get('/mis-productos/{id}', function () {
+    return view('mis_productos');
+});
+
+Route::get('/mis-compras/{id}', function () {
+    return view('mis_compras');
 });
 
 Route::get('/portada', function () {
@@ -70,4 +71,12 @@ Route::get('/electronica', function () {
 
 Route::get('/muebles', function () {
     return view('muebles');
+});
+
+Route::get('/editar', function () {
+    return view('editar');
+});
+
+Route::get('/editar_producto', function () {
+    return view('editar_producto');
 });

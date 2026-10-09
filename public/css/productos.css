@@ -134,17 +134,16 @@ main {
 	right: 7px;
 }
 
-.btn-increment-decrement i {
+.btn-increment-decrement button {
+	border: 0;
+	background: transparent;
 	font-size: 11px;
 	color: #666;
 	cursor: pointer;
+	line-height: 1;
 }
 
-.fa-chevron-down:hover {
-	color: #1bbeb4;
-}
-
-.fa-chevron-up:hover {
+.btn-increment-decrement button:hover {
 	color: #1bbeb4;
 }
 

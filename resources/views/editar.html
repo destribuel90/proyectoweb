@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAGE - Editar perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="http://127.0.0.1:8000/"><h1 class="header__centered">TAGE</h1></a>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos..." id="search-bar-text">
+                <button id="search-bar-button">Buscar</button>
+            </div>
+            <div class="header-buttons">
+                <div class="user">
+                    <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                    <span><a href="http://127.0.0.1:8000/sesion" id="Iniciar">Iniciar sesión</a></span>
+                </div>
+                <div class="cart">
+                    <span id="saldo">$0.00</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main">
+            <nav>
+                <ul class="menu-horizontal">
+                    <li>
+                        <a href="#">Categorías</a>
+                        <ul class="menu-vertical">
+                            <li><a href="http://127.0.0.1:8000/electronica">Electronica</a></li>
+                            <li><a href="http://127.0.0.1:8000/muebles">Muebles</a></li>
+                            <li><a href="http://127.0.0.1:8000/autos">Autos</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Contactos</a>
+                        <ul class="menu-vertical">
+                        </ul>
+                    </li>
+                    <li><a href="http://127.0.0.1:8000/vender">Vender</a></li>
+                </ul>
+            </nav>
+
+            <div class="category">
+                <h2>Editar perfil</h2>
+            </div>
+
+            <!-- Formulario de edición -->
+            <div class="row justify-content-center my-4">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div id="alerta" class="alert d-none" role="alert"></div>
+
+                    <form id="form-editar" class="card card-body shadow-sm" novalidate>
+                        <div class="text-center mb-3">
+                            <img id="preview" src="icons/user-icon.svg" alt="Foto de perfil"
+                                 class="rounded-circle border" width="120" height="120" style="object-fit: cover;">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Foto de perfil</label>
+                            <input type="file" class="form-control" id="image" name="image" accept=".jpg,.jpeg,.png">
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name" name="name" maxlength="255" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="birthdate" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Nueva contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   minlength="6" autocomplete="new-password">
+                            <div class="form-text">Déjala vacía si no quieres cambiarla.</div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="d-flex gap-2 justify-content-end">
+                            <a href="http://127.0.0.1:8000/" class="btn btn-outline-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 TAGE. Todos los derechos reservados.</p>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="module" src="js/constantes.js"></script>
+        <script type="module" src="js/dataUser.js"></script>
+        <script type="module" src="js/buscador.js"></script>
+        <script type="module" src="js/editUser.js"></script>
+    </div>
+</body>
+</html>

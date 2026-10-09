@@ -1,0 +1,113 @@
+.list-page {
+    width: min(1100px, 94%);
+    margin: 2rem auto;
+}
+
+.list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.list-heading h2 {
+    color: #333;
+}
+
+.list-action,
+.list-card-actions a,
+.list-card > a,
+.list-delete-button {
+    display: inline-block;
+    padding: 0.6rem 0.9rem;
+    border-radius: 5px;
+    background: #3c70ff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.list-delete-button {
+    border: 0;
+    background: #d93025;
+    font: inherit;
+    cursor: pointer;
+}
+
+.list-delete-button:hover {
+    background: #b3261e;
+}
+
+.list-delete-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.list-message {
+    margin: 1rem 0;
+    color: #555;
+}
+
+.list-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 300px));
+    gap: 1rem;
+    align-items: start;
+}
+
+.list-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 0;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 6px #0002;
+}
+
+.list-card > img {
+    width: 100%;
+    height: 180px;
+    flex: none;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.list-card-details {
+    min-width: 0;
+    padding-top: 0.75rem;
+}
+
+.list-card-details h3 {
+    margin-bottom: 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+.list-card-details p {
+    margin: 0.25rem 0;
+}
+
+.list-card-details .list-price {
+    color: #398326;
+    font-weight: bold;
+}
+
+.list-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.list-card > a {
+    align-self: flex-start;
+    margin-top: 0.75rem;
+}
+
+@media (max-width: 520px) {
+    .list-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

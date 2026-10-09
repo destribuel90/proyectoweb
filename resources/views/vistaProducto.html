@@ -17,7 +17,7 @@
             </div>
             <div class="header-buttons">
             <div class="user">
-                <img src="icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
+                <img src="/icons/user-icon.svg" alt="Icono de usuario" id="imgUser">
                 <span><a href="http://127.0.0.1:8000/sesion" id="Iniciar">Iniciar sesión</a></span>
             </div>
             <div class="cart">
@@ -43,11 +43,8 @@
                     <li>
                         <a href="#">Contactos</a>
                         <ul class="menu-vertical">
-                            <li><a href="http://127.0.0.1:8000/alumnos">Alumnos</a></li>
-                            <li><a href="https://www.cecyt8.ipn.mx/">Escuela</a></li>
                         </ul>
                     </li>
-                    <li><a href="http://127.0.0.1:8000/portada">Portada</a></li>
                     <li><a href="http://127.0.0.1:8000/vender">Vender</a></li>
                 </ul>
             </nav>
@@ -65,7 +62,7 @@
                     <div class="container-info-product">
                         <div class="container-price">
                             <span id="price"></span>
-                            <i class="fa-solid fa-angle-right"></i>
+                            <span aria-hidden="true">&gt;</span>
                         </div>
 
                         <div class="container-details-product">
@@ -87,8 +84,8 @@
                                     class="input-quantity"
                                 />
                                 <div class="btn-increment-decrement">
-                                    <i class="fa-solid fa-chevron-up" id="increment"></i>
-                                    <i class="fa-solid fa-chevron-down" id="decrement"></i>
+                                    <button type="button" id="increment" aria-label="Aumentar cantidad">+</button>
+                                    <button type="button" id="decrement" aria-label="Reducir cantidad">−</button>
                                 </div>
                             </div>
                             <button class="btn-add-to-cart" id="open">
@@ -99,7 +96,7 @@
                         <div class="container-description">
                             <div class="title-description">
                                 <h4>Descripción</h4>
-                                <i class="fa-solid fa-chevron-down"></i>
+                                <span aria-hidden="true">⌄</span>
                             </div>
                             <div class="text-description">
                                 <p id="description">
@@ -131,7 +128,7 @@
 
         <!-- Pie de Página -->
         <footer>
-            <p>&copy; 2025 Tienda en Línea. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Tienda en Línea. Todos los derechos reservados.</p>
         </footer>
         
     </div>
@@ -148,10 +145,6 @@
     <script type="module" src="http://127.0.0.1:8000/js/constantes.js"></script>
     <script type="module" src="http://127.0.0.1:8000/js/vistaproducto.js"></script>
     <script type="module" src="http://127.0.0.1:8000/js/dataUser.js"></script>
-    <script
-        src="https://kit.fontawesome.com/81581fb069.js"
-        crossorigin="anonymous"
-    ></script>
     <script type="module" src="http://127.0.0.1:8000/js/buscador.js"></script>
 </body>
 </html>

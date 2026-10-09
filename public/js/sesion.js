@@ -11,7 +11,9 @@ document.querySelector('form')
             .then(response => response.json())
             .then(res => {
                 // Verifica si el inicio de sesión fue exitoso
-                if (res.message === 'Inicio de sesión completado con éxito') {
+                if (res.message === 'Inicio de sesión completado con éxito' && res.token && res.user) {
+                    localStorage.setItem('token', res.token);
+                    localStorage.setItem('user_id', res.user.id);
                     // Redirige a la página principal si el login fue exitoso
                     window.location.href = URL;
                 } else {

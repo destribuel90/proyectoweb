@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use function Laravel\Prompts\password;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class Users extends Controller
 {
-    public function index(){
-       $users = User::all();
-       return response()->json($users, 200);
+    public function index()
+    {
+        $users = User::all();
+        return response()->json($users, 200);
     }
+
     public function store(Request $request)
     {
         try {
-            // Validar datos de entrada
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
@@ -25,21 +26,16 @@ class Users extends Controller
                 'password' => 'required|min:6',
                 'image' => 'nullable|image|mimes:jpg,jpeg,png',
             ]);
-    
-            // Inicializar variable para el nombre del archivo
+
             $nameFile = null;
-    
-            // Manejo de la imagen (si existe y es válida)
+
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                $fecha = now()->format('Ymd_His');
                 $archivo = $request->file('image');
-                $nameFile = "Username_" . rand(1000, 9999) . "_" . $fecha . "." . $archivo->extension();
-    
-                // Intentar guardar la imagen
+                $nameFile = "Username_" . rand(1000, 9999) . "_" . now()->format('Ymd_His') . "." . $archivo->extension();
+
                 try {
                     $archivo->storeAs('img/users', $nameFile, 'public');
                 } catch (\Exception $e) {
-                    // Si hay un problema con la imagen, devolvemos un código de error 500
                     return response()->json([
                         'success' => false,
                         'error_code' => 500,
@@ -47,19 +43,17 @@ class Users extends Controller
                     ], 500);
                 }
             }
-    
-            // Intentar crear el usuario
+
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'birthdate' => $validatedData['birthdate'],
-                'role' => "U", // Asignando un valor por defecto para el rol
-                'current_balance' => 5000, // Balance inicial
-                'image' => $nameFile, // Guardar el nombre del archivo de la imagen si existe
-                'password' => Hash::make($validatedData['password']),
+                'role' => 'U',
+                'current_balance' => 5000,
+                'image' => $nameFile,
+                'password' => $validatedData['password'], // el cast 'hashed' del modelo la hashea
             ]);
-    
-            // Si no se pudo crear el usuario
+
             if (!$user) {
                 return response()->json([
                     'success' => false,
@@ -67,119 +61,155 @@ class Users extends Controller
                     'message' => 'Error al crear el usuario.'
                 ], 500);
             }
-    
-            // Retornar éxito con código 201 para creación exitosa de recurso
+
             return response()->json([
                 'success' => true,
                 'error_code' => 0,
                 'message' => 'Usuario creado con éxito.'
-            ], 201); // 201: Created
-            
+            ], 201);
+
         } catch (\Illuminate\Validation\ValidationException $e) {
-            // Si ocurre un error de validación
             return response()->json([
                 'success' => false,
                 'error_code' => 422,
                 'message' => 'Errores de validación.',
                 'errors' => $e->errors()
-            ], 422); // 422: Unprocessable Entity (Errores de validación)
+            ], 422);
         } catch (\Exception $e) {
-            // Si ocurre un error general
             return response()->json([
                 'success' => false,
                 'error_code' => 500,
                 'message' => 'Ocurrió un error inesperado.'
-            ], 500); // 500: Internal Server Error
+            ], 500);
         }
     }
-    
 
     public function show($id)
     {
-    
-        $user = User::where('id', $id)->first();
-    
+        $user = User::find($id);
+
         if (!$user) {
             return response()->json(['error' => 'Usuario no encontrado'], 404);
         }
-    
-        // Ocultar la contraseña del resultado
-        $user->makeHidden('password');
-    
+
         return response()->json($user, 200);
     }
-    
+
     public function sesion(Request $request)
     {
-        // Validar los datos de entrada
         $validatedData = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
-        // Buscar usuario por correo
+
         $user = User::where('email', $validatedData['email'])->first();
-    
-        // Verificar si el usuario existe y si la contraseña es correcta
+
         if (!$user || !Hash::check($validatedData['password'], $user->password)) {
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
         }
-    
-        // Iniciar sesión PHP si aún no se ha iniciado
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-    
-        // Guardar el ID del usuario en la sesión de PHP puro
-        $_SESSION['user_id'] = $user->id;
-    
-        // Retornar una respuesta con los datos del usuario
+
+        // Una sola sesión activa: revoca tokens anteriores
+        $user->tokens()->delete();
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         return response()->json([
             'message' => 'Inicio de sesión completado con éxito',
+            'token' => $token,
             'user' => [
-                'id' => $_SESSION['user_id'],
+                'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
             ],
         ], 200);
     }
-    public function session_status()
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start(); // Inicia la sesión solo si no está activa
-        }
-    
-        if (isset($_SESSION['user_id'])) {
-            return response()->json([
-                'active' => true,
-                'user_id' => $_SESSION['user_id']
-            ], 200); // Respuesta con código 200, sesión activa
-        }
-    
-        return response()->json([
-            'active' => false,
-            'message' => 'Usuario no autenticado' // Mensaje claro para el cliente
-        ], 401); // Respuesta con código 401, no autorizado
-    }
-    
 
-    
-    public function logout()
+    // Ruta protegida con auth:sanctum
+    public function session_status(Request $request)
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        $_SESSION = [];
-        session_destroy();
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
-        }
+        return response()->json([
+            'active' => true,
+            'user_id' => $request->user()->id
+        ], 200);
+    }
+
+    // Ruta protegida con auth:sanctum
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
         return response()->json(['logout' => true]);
     }
-    
-    
+
+    // Ruta protegida con auth:sanctum
+    public function update(Request $request, $id)
+    {
+        $authUser = $request->user();
+
+        // Solo puede editarse a sí mismo (o un admin; ajusta el valor del rol)
+        if ($authUser->id != $id && $authUser->role !== 'A') {
+            return response()->json(['message' => 'No autorizado'], 403);
+        }
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+
+        try {
+            $validatedData = $request->validate([
+                'name' => 'sometimes|required|string|max:255',
+                'email' => ['sometimes', 'required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+                'birthdate' => 'sometimes|required|date',
+                'password' => 'sometimes|required|min:6',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png',
+            ]);
+
+            unset($validatedData['image']);
+
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                $archivo = $request->file('image');
+                $nameFile = "Username_" . rand(1000, 9999) . "_" . now()->format('Ymd_His') . "." . $archivo->extension();
+
+                try {
+                    $archivo->storeAs('img/users', $nameFile, 'public');
+                } catch (\Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'error_code' => 500,
+                        'message' => 'Hubo un problema al guardar la imagen.'
+                    ], 500);
+                }
+
+                if ($user->image) {
+                    Storage::disk('public')->delete('img/users/' . $user->image);
+                }
+
+                $validatedData['image'] = $nameFile;
+            }
+
+            $user->update($validatedData); // password se hashea por el cast del modelo
+
+            return response()->json([
+                'success' => true,
+                'error_code' => 0,
+                'message' => 'Usuario actualizado con éxito.',
+                'user' => $user
+            ], 200);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'error_code' => 422,
+                'message' => 'Errores de validación.',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error_code' => 500,
+                'message' => 'Ocurrió un error inesperado.'
+            ], 500);
+        }
+    }
 }

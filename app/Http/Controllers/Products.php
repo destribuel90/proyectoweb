@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class Products extends Controller
 {
+    public function mine(Request $request)
+    {
+        return response()->json(
+            Product::where('user_id', $request->user()->id)->latest()->get(),
+            200
+        );
+    }
+
     public function index(){
         $products = Product::all();
         if($products->isEmpty()){
@@ -24,48 +32,31 @@ class Products extends Controller
         return response()->json($products,200);
     }
     public function store(Request $request){
-        $nameFile = null;
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'description' => 'required|max:700',
-            'price' => 'require d|numeric',
-            'stock' => 'required|integer',
-            'image' => 'nullable|image', 
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:500',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'image' => 'required|image',
         ]);
-        if($validator->fails()){
-            $data = [
-                'message' => 'Error en la validación de datos',
-                'errors' => $validator->errors(),
-                'status' => 400
-            ];
-            return response()->json($data, 400);
-        }
-        if($request->hasFile('image') && $request->file('image')->isValid()){
-            $fecha = date('Y-m-d').date('His');
-            $archivo = $request->file('image');
-            $nameFile = "productname" . rand(1000,9999) . "_" . $fecha . "." . $archivo->extension();
-            $id = $_SESSION['user_id'];
-            $product = Product::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
-                'stock' => $request->stock,
-                'user_id' => $id,
-                'image' => $nameFile
-            ]);
-            if(!$product){
-                $data = [
-                    'message' => 'Error al crear el producto',
-                    'status' => 500
-                ];
-                return response()->json($data, 500);
-            }
-            $archivo->storeAs('img/products', $nameFile , 'public');
-        }else {
-            return response()->json(['error' => 'Archivo no válido o no se subió archivo'], 400);
-        }
-            
-        return response()->json(['productos' => $product, 'message' => 'El producto ha sido creado'], 200);
+
+        $image = $validated['image'];
+        $nameFile = 'productname' . rand(1000, 9999) . '_' . now()->format('Y-m-dHis') . '.' . $image->extension();
+        $image->storeAs('img/products', $nameFile, 'public');
+
+        $product = Product::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'stock' => $validated['stock'],
+            'user_id' => $request->user()->id,
+            'image' => $nameFile,
+        ]);
+
+        return response()->json([
+            'productos' => $product,
+            'message' => 'El producto ha sido creado',
+        ], 201);
     }
     public function show($id) {
         // Buscar el producto con el ID dado
@@ -88,42 +79,88 @@ class Products extends Controller
         return response()->json($product, 200);
     }
     
-    public function update($id){
+    public function update(Request $request, $id)
+    {
         $product = Product::find($id);
-        if(!$product){
-            $data = [
+
+        if (!$product) {
+            return response()->json([
                 'message' => 'El producto que intentas actualizar no existe',
-                'message' => 404
-            ];
-            response()->json($data, 404);
+                'status' => 404
+            ], 404);
         }
-        $product->name = request()->name;
-        $product->description = request()->description;
-    }
-    public function search($data){
-        $results = Product::where('name', 'like',  $data . '%' )->get();
-        return response()->json($results, 200);
-    }
-    public function updateProductStock(Request $request) {
-        try {
-            $productId = $request->input('product_id');
-            $quantity = $request->input('quantity');
-    
-            $product = Product::findOrFail($productId);
-    
-            // Verifica que el stock sea suficiente o suficiente para restar
-            if ($product->stock + $quantity < 0) {
-                return response()->json(['message' => 'Stock insuficiente para realizar la operación', 'status' => false], 400);
+
+        // Solo el dueño del producto (o un admin) puede editarlo
+        $authUser = $request->user();
+        if ($product->user_id != $authUser->id && $authUser->role !== 'A') {
+            return response()->json(['message' => 'No autorizado'], 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'sometimes|required|max:255',
+            'description' => 'sometimes|required|max:700',
+            'price' => 'sometimes|required|numeric|min:0',
+            'stock' => 'sometimes|required|integer|min:0',
+            'image' => 'nullable|image',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Error en la validación de datos',
+                'errors' => $validator->errors(),
+                'status' => 400
+            ], 400);
+        }
+
+        $data = $validator->validated();
+        unset($data['image']);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $archivo = $request->file('image');
+            $nameFile = "productname" . rand(1000, 9999) . "_" . date('Y-m-d') . date('His') . "." . $archivo->extension();
+
+            $archivo->storeAs('img/products', $nameFile, 'public');
+
+            // Borrar la imagen anterior
+            if ($product->image) {
+                Storage::disk('public')->delete('img/products/' . $product->image);
             }
-    
-            // Actualiza el stock
-            $product->stock += $quantity;
-            $product->save();
-    
-            return response()->json(['message' => 'Stock actualizado correctamente', 'status' => true, 'stock' => $product->stock], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'status' => false], 500);
+
+            $data['image'] = $nameFile;
         }
+
+        $product->update($data);
+
+        return response()->json([
+            'productos' => $product,
+            'message' => 'El producto ha sido actualizado'
+        ], 200);
     }
-    
+
+    public function destroy(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                'message' => 'El producto no existe.'
+            ], 404);
+        }
+
+        if ($product->user_id !== $request->user()->id) {
+            return response()->json([
+                'message' => 'No tienes permiso para eliminar este producto.'
+            ], 403);
+        }
+
+        if ($product->image) {
+            Storage::disk('public')->delete('img/products/' . $product->image);
+        }
+
+        $product->delete();
+
+        return response()->json([
+            'message' => 'El producto se eliminó correctamente.'
+        ], 200);
+    }
 }

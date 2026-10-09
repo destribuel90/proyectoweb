@@ -60,33 +60,54 @@ open.addEventListener('click', () => {
 cerrar.addEventListener('click', ()=>{
     modal_container.classList.remove('show');
 })
-close.addEventListener('click', () => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 'id': productId, 'stock': inputQuantity.value})
-    };
+close.addEventListener('click', async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = `${URL}/sesion`;
+        return;
+    }
 
-    fetch(URL + '/api/venta', options)
-        .then(res => res.json()) // Asegurarte de parsear el JSON
-        .then(res => {
-            if (res.status) {
-                verificacion.textContent = res.message;
-                verificacion.style.color = 'green';
-                window.location.href = 'http://127.0.0.1:8000';
-            } else {
-                verificacion.textContent = res.message;
-                verificacion.style.color = 'red';
-                // window.location.href = 'http://127.0.0.1:8000';
-            }
-        })
-        .catch(error => {
-            console.error('Ocurrió un error:', error);
-            verificacion.textContent = 'Error de conexión al servidor';
-            verificacion.style.color = 'red';
+    close.disabled = true;
+    verificacion.textContent = '';
+
+    try {
+        const response = await fetch(`${URL}/api/venta`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ id: productId, stock: inputQuantity.value }),
         });
+        const responseText = await response.text();
+        let result;
+
+        try {
+            result = JSON.parse(responseText);
+        } catch {
+            throw new Error(`El servidor respondió con un formato inesperado (${response.status}).`);
+        }
+
+        if (response.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user_id');
+            window.location.href = `${URL}/sesion`;
+            return;
+        }
+        if (!response.ok || !result.status) {
+            throw new Error(result.message || 'No se pudo completar la compra.');
+        }
+
+        verificacion.textContent = result.message;
+        verificacion.style.color = 'green';
+        window.location.href = URL;
+    } catch (error) {
+        console.error('Ocurrió un error al realizar la compra:', error);
+        verificacion.textContent = error.message || 'Error de conexión al servidor.';
+        verificacion.style.color = 'red';
+        close.disabled = false;
+    }
 });
 
 
